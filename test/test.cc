@@ -303,9 +303,9 @@ TEST(ParseAcceptEncoding1, AcceptEncoding) {
   auto ret = detail::encoding_type(req, res);
 
 #ifdef CPPHTTPLIB_ZLIB_SUPPORT
-  EXPECT_TRUE(ret == detail::EncodingType::Gzip);
+  EXPECT_EQ(ret, detail::EncodingType::Gzip);
 #else
-  EXPECT_TRUE(ret == detail::EncodingType::None);
+  EXPECT_EQ(ret, detail::EncodingType::None);
 #endif
 }
 
@@ -319,11 +319,11 @@ TEST(ParseAcceptEncoding2, AcceptEncoding) {
   auto ret = detail::encoding_type(req, res);
 
 #ifdef CPPHTTPLIB_BROTLI_SUPPORT
-  EXPECT_TRUE(ret == detail::EncodingType::Brotli);
+  EXPECT_EQ(ret, detail::EncodingType::Brotli);
 #elif CPPHTTPLIB_ZLIB_SUPPORT
-  EXPECT_TRUE(ret == detail::EncodingType::Gzip);
+  EXPECT_EQ(ret, detail::EncodingType::Gzip);
 #else
-  EXPECT_TRUE(ret == detail::EncodingType::None);
+  EXPECT_EQ(ret, detail::EncodingType::None);
 #endif
 }
 
@@ -337,11 +337,11 @@ TEST(ParseAcceptEncoding3, AcceptEncoding) {
   auto ret = detail::encoding_type(req, res);
 
 #ifdef CPPHTTPLIB_BROTLI_SUPPORT
-  EXPECT_TRUE(ret == detail::EncodingType::Brotli);
+  EXPECT_EQ(ret, detail::EncodingType::Brotli);
 #elif CPPHTTPLIB_ZLIB_SUPPORT
-  EXPECT_TRUE(ret == detail::EncodingType::Gzip);
+  EXPECT_EQ(ret, detail::EncodingType::Gzip);
 #else
-  EXPECT_TRUE(ret == detail::EncodingType::None);
+  EXPECT_EQ(ret, detail::EncodingType::None);
 #endif
 }
 
@@ -587,7 +587,7 @@ TEST(ConnectionErrorTest, Timeout) {
 
   auto res = cli.Get("/");
   ASSERT_TRUE(!res);
-  EXPECT_TRUE(res.error() == Error::Connection);
+  EXPECT_EQ(res.error(), Error::Connection);
 }
 
 TEST(CancelTest, NoCancel_Online) {
