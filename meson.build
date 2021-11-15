@@ -101,7 +101,7 @@ if get_option('cpp-httplib_compile')
   )
 else
   install_headers('httplib.h')
-  cpp_httplib_dep = declare_dependency(compile_args: args, dependencies: deps, include_directories: include_directories('.'))
+  cpp_httplib_dep = declare_dependency(dependencies: deps, include_directories: include_directories('.'))
 endif
 
 if meson.version().version_compare('>=0.54.0')
